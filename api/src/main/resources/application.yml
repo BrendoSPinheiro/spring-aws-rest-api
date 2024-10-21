@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: spring-aws-rest-api
+server:
+  servlet:
+    context-path: /api
+  port: ${PORT:8080}

@@ -1,0 +1,24 @@
+[versions]
+springBoot = "3.3.4"
+dependencyManagement = "1.1.6"
+
+[libraries]
+springActuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
+springSecurity = { group = "org.springframework.boot", name = "spring-boot-starter-security" }
+springValidation = { group = "org.springframework.boot", name = "spring-boot-starter-validation" }
+springWeb = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+
+lombok = { group = "org.projectlombok", name = "lombok" }
+
+springDevtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
+
+springTest = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+springSecurityTest = { group = "org.springframework.security", name = "spring-security-test" }
+junitPlatformLauncher = { group = "org.junit.platform", name = "junit-platform-launcher" }
+
+[bundles]
+tests = ["springTest", "springSecurityTest"]
+
+[plugins]
+springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }
+dependencyManagement = { id = "io.spring.dependency-management", version.ref = "dependencyManagement" }
