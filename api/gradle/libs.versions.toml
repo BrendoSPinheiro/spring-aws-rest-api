@@ -1,12 +1,14 @@
 [versions]
 springBoot = "3.3.4"
 dependencyManagement = "1.1.6"
+springDocOpenApi = "2.6.0"
 
 [libraries]
 springActuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
 springSecurity = { group = "org.springframework.boot", name = "spring-boot-starter-security" }
 springValidation = { group = "org.springframework.boot", name = "spring-boot-starter-validation" }
 springWeb = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+springDoc = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "springDocOpenApi" }
 
 lombok = { group = "org.projectlombok", name = "lombok" }
 

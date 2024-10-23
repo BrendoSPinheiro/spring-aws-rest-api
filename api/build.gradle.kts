@@ -30,6 +30,7 @@ dependencies {
     implementation(libs.springWeb)
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
+    implementation(libs.springDoc)
 
     developmentOnly(libs.springDevtools)
 
