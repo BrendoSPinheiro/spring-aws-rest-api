@@ -31,6 +31,8 @@ dependencies {
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
     implementation(libs.springDoc)
+    implementation(libs.jJwtApi)
+    runtimeOnly(libs.bundles.jjwtRuntime)
 
     developmentOnly(libs.springDevtools)
 

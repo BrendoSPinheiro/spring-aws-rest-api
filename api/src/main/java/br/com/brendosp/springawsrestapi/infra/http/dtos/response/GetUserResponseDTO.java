@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public record GetUserByIdResponseDTO(
+public record GetUserResponseDTO(
     @Schema(description = "User ID")
     UUID id,
     @Schema(description = "User name")

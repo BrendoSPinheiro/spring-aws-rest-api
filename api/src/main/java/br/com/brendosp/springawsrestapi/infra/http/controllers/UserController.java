@@ -5,7 +5,7 @@ import br.com.brendosp.springawsrestapi.domain.usecases.IUserUseCase;
 import br.com.brendosp.springawsrestapi.domain.usecases.dtos.CreateUserCommand;
 import br.com.brendosp.springawsrestapi.infra.http.dtos.request.CreateUserRequestDTO;
 import br.com.brendosp.springawsrestapi.infra.http.dtos.response.CreateUserResponseDTO;
-import br.com.brendosp.springawsrestapi.infra.http.dtos.response.GetUserByIdResponseDTO;
+import br.com.brendosp.springawsrestapi.infra.http.dtos.response.GetUserResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -13,6 +13,7 @@ import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,17 +33,18 @@ public class UserController {
 
     @GetMapping("/me")
     @Operation(summary = "Get current user")
-    public ResponseEntity<?> getCurrentUser() {
-        return ResponseEntity.ok("Current user");
+    public ResponseEntity<GetUserResponseDTO> getCurrentUser() {
+        var user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return ResponseEntity.ok(conversionService.convert(user, GetUserResponseDTO.class));
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Get user by ID")
-    public ResponseEntity<GetUserByIdResponseDTO> getById(@PathVariable("id") UUID id) {
+    public ResponseEntity<GetUserResponseDTO> getById(@PathVariable("id") UUID id) {
         User user = userUseCase.getUserById(id);
 
         return user != null
-            ? ResponseEntity.ok(conversionService.convert(user, GetUserByIdResponseDTO.class))
+            ? ResponseEntity.ok(conversionService.convert(user, GetUserResponseDTO.class))
             : ResponseEntity.notFound().build();
     }
 

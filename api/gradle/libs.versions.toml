@@ -2,6 +2,7 @@
 springBoot = "3.3.4"
 dependencyManagement = "1.1.6"
 springDocOpenApi = "2.6.0"
+jjwt = "0.12.6"
 
 [libraries]
 springActuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
@@ -9,6 +10,9 @@ springSecurity = { group = "org.springframework.boot", name = "spring-boot-start
 springValidation = { group = "org.springframework.boot", name = "spring-boot-starter-validation" }
 springWeb = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
 springDoc = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "springDocOpenApi" }
+jJwtApi = { group = "io.jsonwebtoken", name = "jjwt-api", version.ref = "jjwt" }
+jJwtImpl = { group = "io.jsonwebtoken", name = "jjwt-impl", version.ref = "jjwt" }
+jJwtJackson = { group = "io.jsonwebtoken", name = "jjwt-jackson", version.ref = "jjwt" }
 
 lombok = { group = "org.projectlombok", name = "lombok" }
 
@@ -20,6 +24,7 @@ junitPlatformLauncher = { group = "org.junit.platform", name = "junit-platform-l
 
 [bundles]
 tests = ["springTest", "springSecurityTest"]
+jjwtRuntime = ["jJwtImpl", "jJwtJackson"]
 
 [plugins]
 springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }

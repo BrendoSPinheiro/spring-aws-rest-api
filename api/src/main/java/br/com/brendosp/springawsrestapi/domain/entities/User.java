@@ -1,13 +1,17 @@
 package br.com.brendosp.springawsrestapi.domain.entities;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.UUID;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Data
 @NoArgsConstructor
-public class User {
+public class User implements UserDetails {
     private UUID id;
     private String name;
     private String email;
@@ -22,5 +26,15 @@ public class User {
         this.password = password;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
     }
 }

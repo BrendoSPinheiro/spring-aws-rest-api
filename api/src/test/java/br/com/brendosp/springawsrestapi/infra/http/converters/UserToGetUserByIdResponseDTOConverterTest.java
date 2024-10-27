@@ -1,7 +1,7 @@
 package br.com.brendosp.springawsrestapi.infra.http.converters;
 
 import br.com.brendosp.springawsrestapi.domain.entities.User;
-import br.com.brendosp.springawsrestapi.infra.http.dtos.response.GetUserByIdResponseDTO;
+import br.com.brendosp.springawsrestapi.infra.http.dtos.response.GetUserResponseDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,7 +15,7 @@ class UserToGetUserByIdResponseDTOConverterTest {
     void itShouldConvertUserToGetUserByIdResponseDTO() {
         var user = new User("Brendo", "brendo@mail.com", "123456");
 
-        GetUserByIdResponseDTO response = converter.convert(user);
+        GetUserResponseDTO response = converter.convert(user);
 
         assertThat(response).isNotNull();
         assertThat(response.id()).isEqualTo(user.getId());
