@@ -33,6 +33,7 @@ dependencies {
     implementation(libs.springDoc)
     implementation(libs.jJwtApi)
     runtimeOnly(libs.bundles.jjwtRuntime)
+    implementation(libs.dynamoDB)
 
     developmentOnly(libs.springDevtools)
 

@@ -1,6 +1,8 @@
 spring:
   application:
     name: spring-aws-rest-api
+  profiles:
+    active: local
 server:
   servlet:
     context-path: /api
@@ -11,8 +13,13 @@ springdoc:
   api-docs:
     path: /docs
   show-actuator: true
-
 security:
   jwt:
     secret-key: ${JWT_SECRET_KEY:afb789a987d29a72f8563162167be815}
     expiration: ${JWT_EXPIRATION:3600000}
+aws:
+  region: ${AWS_REGION:us-east-1}
+  endpoint: ${AWS_ENDPOINT:http://localhost:4566}
+  dynamodb:
+    table:
+      name: ${DYNAMODB_TABLE_NAME:users}

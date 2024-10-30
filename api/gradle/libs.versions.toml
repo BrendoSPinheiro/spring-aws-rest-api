@@ -3,6 +3,7 @@ springBoot = "3.3.4"
 dependencyManagement = "1.1.6"
 springDocOpenApi = "2.6.0"
 jjwt = "0.12.6"
+dynamoDB = "2.29.2"
 
 [libraries]
 springActuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
@@ -13,6 +14,7 @@ springDoc = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-
 jJwtApi = { group = "io.jsonwebtoken", name = "jjwt-api", version.ref = "jjwt" }
 jJwtImpl = { group = "io.jsonwebtoken", name = "jjwt-impl", version.ref = "jjwt" }
 jJwtJackson = { group = "io.jsonwebtoken", name = "jjwt-jackson", version.ref = "jjwt" }
+dynamoDB = { group = "software.amazon.awssdk", name = "dynamodb", version.ref = "dynamoDB" }
 
 lombok = { group = "org.projectlombok", name = "lombok" }
 
