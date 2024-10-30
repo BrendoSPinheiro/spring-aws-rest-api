@@ -14,7 +14,12 @@ services:
     volumes:
       - "./localstack/init-dynamodb.sh:/docker-entrypoint-initaws.d/init-dynamodb.sh"
       - localstack_data:/var/lib/localstack
+    networks:
+      - spring-aws_network
     entrypoint: [ "/bin/bash", "-c", "docker-entrypoint.sh & /docker-entrypoint-initaws.d/init-dynamodb.sh" ]
 
 volumes:
   localstack_data:
+networks:
+  spring-aws_network:
+    external: true
