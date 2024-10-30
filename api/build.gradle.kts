@@ -1,5 +1,6 @@
 plugins {
     java
+    jacoco
     alias(libs.plugins.springBoot)
     alias(libs.plugins.dependencyManagement)
 }
@@ -28,12 +29,14 @@ dependencies {
     implementation(libs.springSecurity)
     implementation(libs.springValidation)
     implementation(libs.springWeb)
-    compileOnly(libs.lombok)
-    annotationProcessor(libs.lombok)
     implementation(libs.springDoc)
     implementation(libs.jJwtApi)
-    runtimeOnly(libs.bundles.jjwtRuntime)
     implementation(libs.dynamoDB)
+
+    compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
+
+    runtimeOnly(libs.bundles.jjwtRuntime)
 
     developmentOnly(libs.springDevtools)
 
@@ -43,4 +46,12 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.jacocoTestReport {
+    dependsOn("test")
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
 }

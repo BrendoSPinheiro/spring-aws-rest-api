@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
@@ -19,20 +18,19 @@ import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
 import software.amazon.awssdk.services.dynamodb.model.QueryRequest;
 import software.amazon.awssdk.services.dynamodb.model.QueryResponse;
 
-@Repository
 @Primary
+@Repository
 @RequiredArgsConstructor
 public class DynamoDbUserRepositoryImpl implements IUserRepository {
 
-    @Value("${aws.dynamodb.table.name}")
-    private String tableName;
+    private static final String TABLE_NAME = "users";
 
     private final DynamoDbClient dynamoDbClient;
 
     @Override
     public Optional<User> findById(UUID id) {
         var request = GetItemRequest.builder()
-            .tableName(tableName)
+            .tableName(TABLE_NAME)
             .key(Map.of("id", AttributeValue.builder().s(id.toString()).build()))
             .build();
 
@@ -50,7 +48,7 @@ public class DynamoDbUserRepositoryImpl implements IUserRepository {
     @Override
     public Optional<User> findByEmail(String email) {
         var request = QueryRequest.builder()
-            .tableName(tableName)
+            .tableName(TABLE_NAME)
             .indexName("email-index")
             .expressionAttributeValues(Map.of(":email", AttributeValue.builder().s(email).build()))
             .keyConditionExpression("email = :email")
@@ -79,7 +77,7 @@ public class DynamoDbUserRepositoryImpl implements IUserRepository {
         );
 
         var request = PutItemRequest.builder()
-            .tableName(tableName)
+            .tableName(TABLE_NAME)
             .item(record)
             .conditionExpression("attribute_not_exists(email)")
             .build();
@@ -92,7 +90,7 @@ public class DynamoDbUserRepositoryImpl implements IUserRepository {
     @Override
     public void deleteById(UUID id) {
         var request = DeleteItemRequest.builder()
-            .tableName(tableName)
+            .tableName(TABLE_NAME)
             .key(Map.of("id", AttributeValue.builder().s(id.toString()).build()))
             .build();
 

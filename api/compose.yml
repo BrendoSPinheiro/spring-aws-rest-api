@@ -14,7 +14,7 @@ services:
     volumes:
       - "./localstack/init-dynamodb.sh:/docker-entrypoint-initaws.d/init-dynamodb.sh"
       - localstack_data:/var/lib/localstack
-    entrypoint: [ "/bin/bash", "-c", "/docker-entrypoint-initaws.d/init-dynamodb.sh" ]
+    entrypoint: [ "/bin/bash", "-c", "docker-entrypoint.sh & /docker-entrypoint-initaws.d/init-dynamodb.sh" ]
 
 volumes:
   localstack_data:

@@ -20,6 +20,3 @@ security:
 aws:
   region: ${AWS_REGION:us-east-1}
   endpoint: ${AWS_ENDPOINT:http://localhost:4566}
-  dynamodb:
-    table:
-      name: ${DYNAMODB_TABLE_NAME:users}

@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Initialize localstack
-docker-entrypoint.sh &
-
-# Waiting for localstack to start
 function check_dynamodb {
   aws dynamodb list-tables --endpoint-url=https://localhost.localstack.cloud:4566 --region us-east-1 > /dev/null 2>&1
 }
@@ -13,7 +9,6 @@ while ! check_dynamodb; do
   sleep 5
 done
 
-# Create DynamoDB table
 echo "Creating DynamoDB table 'users'..."
 aws dynamodb create-table --endpoint-url=https://localhost.localstack.cloud:4566 \
   --region us-east-1 \
